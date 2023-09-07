@@ -1,0 +1,20 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<ul class="list-articles">
+	{% for r in realty %}
+			<li><div class="article-panel">
+	<p class="first">Тип недвижимости: {{r.type}}</p>
+	<p class="last">Дата: {{r.time_create|date:"d-m-Y H:i:s"}}</p>
+</div>
+
+				<h2>{{r.title}}</h2>
+	{% autoescape on %}
+	{{r.description|linebreaks|truncatewords:50}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ r.get_absolute_url }}">Подробнее</a></p>
+			</li>
+	{% endfor %}
+</ul>
+{% endblock %}

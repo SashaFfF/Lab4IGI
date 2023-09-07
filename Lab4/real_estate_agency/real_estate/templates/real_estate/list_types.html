@@ -1,0 +1,7 @@
+{% for t in types %}
+	{% if t.pk == type_selected %}
+		<li class="selected">{{t.type}}</li>
+	{% else %}
+		<li><a href="{{ t.get_absolute_url }}">{{t.type}}</a></li>
+	{% endif %}
+{% endfor %}

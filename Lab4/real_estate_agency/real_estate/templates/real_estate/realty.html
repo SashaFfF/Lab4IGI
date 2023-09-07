@@ -1,0 +1,11 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1>{{realty.title}}</h1>
+
+<!--{% if post.photo %}-->
+<!--<p><img class="img-article-left" src="{{post.photo.url}}"></p>-->
+<!--{% endif %}-->
+
+{{realty.description|linebreaks}}
+{% endblock %}
