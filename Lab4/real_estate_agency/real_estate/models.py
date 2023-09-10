@@ -4,12 +4,13 @@ from django.urls import reverse
 
 class PropertyType(models.Model):
     type = models.CharField(max_length=50, verbose_name="Тип")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
     def __str__(self):
         return self.type
 
     def get_absolute_url(self):
-        return reverse('type', kwargs={'type_id': self.pk})
+        return reverse('type', kwargs={'type_slug': self.slug})
 
     class Meta:
         verbose_name = 'Тип недвижимости'
@@ -29,7 +30,7 @@ class ServiceType(models.Model):
 
 class RealEstate(models.Model):
     title = models.CharField(max_length=150, verbose_name="Заголовок")
-    #slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     description = models.TextField(verbose_name="Описание")
     type = models.ForeignKey(PropertyType, on_delete=models.CASCADE, verbose_name="Тип недвижимости")
     service_type = models.ForeignKey(ServiceType, on_delete=models.CASCADE, verbose_name="Тип услуги")
@@ -45,7 +46,7 @@ class RealEstate(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('realty', kwargs={'realty_id': self.pk})
+        return reverse('realty', kwargs={'realty_slug': self.slug})
 
     class Meta:
         verbose_name = 'Недвижимость'
