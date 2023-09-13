@@ -1,0 +1,38 @@
+{% extends 'real_estate/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 align="middle">Информация о компании</h2>
+    <hr/>
+         <center>
+            <img src="{% static 'real_estate/images/logo.png' %}"/>
+        </center>
+<ol>
+    <li><b>Год создания нашей компании:</b> 2022</li>
+    <li><b>Недвижимость, представленная на нашем сайте: </b>
+        <a href="{% url 'home' %}" target="_top">посмотреть тут</a></li>
+<!--    <li><b>Адреса нашей компании и контактные данные агентов: </b>-->
+<!--        <a href="/address" target="_top">просмотреть тут</a></li>-->
+</ol>
+<center>
+<h2>Наше агентство</h2>
+<iframe width="560" height="315"
+        src="https://www.youtube.com/embed/-BAEV2FkKHw?si=Bu4Q8ez4rmgjVMz0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+</iframe>
+</center>
+    <hr/>
+    <h2 align="middle">Реквизиты</h2>
+    <ol>
+        <li><b>Название агентства недвижимости: </b>KeyHouse</li>
+        <li><b>Лицензия: </b>лицензия №12345, выдана агенством по лицензированию страховых компаний</li>
+        <li><b>Основание деятельности: </b>зарегистрировано в Министерстве Недвижимости</li>
+    </ol>
+<hr/>
+<h2 align="middle">Сертификат</h2>
+<p><a href="{% url 'sertificate' %}" target="_top">Ссылка на сертификат</a></p>
+<a href="{% static 'real_estate/images/sertificate.pdf' %}" download>Скачать сертификат в формате PDF</a>
+
+{% endblock %}

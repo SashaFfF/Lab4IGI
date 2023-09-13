@@ -61,7 +61,7 @@ class Owner(models.Model):
     passport_details = models.CharField(max_length=100, verbose_name="Паспортные данные")
 
     def __str__(self):
-        return self.last_name
+        return str(self.last_name) + " " + str(self.first_name)
 
     class Meta:
         verbose_name = 'Владелец'
@@ -76,7 +76,7 @@ class Client(models.Model):
     employee = models.ForeignKey('Employee', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.last_name
+        return str(self.last_name) + " " + str(self.first_name)
 
     class Meta:
         verbose_name = 'Клиент'
@@ -88,9 +88,10 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
     phone_number = models.CharField(max_length=13, verbose_name="Номер телефона")
     position = models.CharField(max_length=100, verbose_name="Должность")
+    # photo = models.ImageField()
 
     def __str__(self):
-        return self.last_name
+        return str(self.last_name) + " " + str(self.first_name)
 
     class Meta:
         verbose_name = 'Сотрудник'
@@ -107,3 +108,22 @@ class Deal(models.Model):
     class Meta:
         verbose_name = 'Сделка'
         verbose_name_plural = 'Сделки'
+
+
+# class PromotionalCode(models.Model):
+#     title = models.CharField(max_length=150, verbose_name="Заголовок")
+#     description = models.TextField(verbose_name="Описание")
+#     start_date = models.DateTimeField( verbose_name="Дата начала действия промокода")
+#     end_date = models.DateTimeField(verbose_name="Дата окончания действия промокода")
+#
+#     def __str__(self):
+#         return self.title
+#
+#     class Meta:
+#         verbose_name = 'Промокод'
+#         verbose_name_plural = 'Промокоды'
+
+
+# class Position(models.Model):
+#     name = models.CharField(max_length=20, verbose_name="Название должности")
+#     description = models.CharField(verbose_name="Описание обязанностей")

@@ -1,0 +1,39 @@
+{% extends 'real_estate/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Баннер компании</h2>
+    <hr/>
+    <center>
+       <img src="{% static 'real_estate/images/banner.png' %}"/>
+    </center>
+    <p align="middle"><a href="/information">О компании</a></p>
+    <hr/>
+    <h2 align="middle">Последняя опубликованная недвижимость</h2>
+    <hr/>
+    <ul>
+        {% for r in realty %}
+            {% if forloop.last %}
+            <li><div class="article-panel">
+	        <p class="first">Тип недвижимости: {{r.type}}</p>
+	        <p class="last">Дата: {{r.time_create|date:"d-m-Y H:i:s"}}</p>
+        </div>
+                <h2>{{r.title}}</h2>
+                {{r.description|linebreaks}}
+                <p class="link-read-post"><a href="{{ r.get_absolute_url }}">Подробнее</a></p>
+            {% endif %}
+        {% endfor %}
+    </ul>
+<h2 align="middle">Наши спонсоры</h2>
+    <hr/>
+<p align="middle">
+        <a href="https://belarusbank.by/ru/fizicheskim_licam/31886/internet_banking">
+            <img src="{% static 'real_estate/images/belarusbank.jpg' %}" width="60" height="50" alt="Пример">
+        </a>
+        <a href="https://www.alfabank.by/">
+            <img src="{% static 'real_estate/images/alfabank.png' %}" width="60" height="50" alt="Пример">
+        </a>
+
+    </p>
+
+{% endblock %}

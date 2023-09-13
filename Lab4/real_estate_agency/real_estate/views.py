@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
 from .forms import *
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView
 from .utils import *
 
 
@@ -24,6 +24,20 @@ class RealEstateHome(DataMixin, ListView):
     def get_queryset(self):
         return RealEstate.objects.filter(purchased=True)
 
+
+class ShowDelas(DataMixin, ListView):
+    model = Deal
+    template_name = 'real_estate/deals.html'
+    context_object_name = 'deals'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Оформленные договоры")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return Deal.objects.all()
+
 # def index(request):
 #     realty = RealEstate.objects.all()
 #
@@ -35,8 +49,8 @@ class RealEstateHome(DataMixin, ListView):
 #     }
 #     return render(request, 'real_estate/index.html', context=context)
 
-def about(request):
-    return render(request, 'real_estate/about.html', {'title': 'о сайте'})
+# def about(request):
+#     return render(request, 'real_estate/Lab1/about.html', {'title': 'о сайте'})
 
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddDealForm
@@ -78,6 +92,7 @@ class ShowRealty(DataMixin, DetailView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title=context['realty'])
         return dict(list(context.items()) + list(c_def.items()))
+
 
 # def show_realty(request, realty_slug):
 #     realty = get_object_or_404(RealEstate, slug=realty_slug)
@@ -155,3 +170,43 @@ def logout_user(request):
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Страница не найдена</h1>')
+
+
+# Lab1
+
+class MainPage(DataMixin, ListView):
+    model = RealEstate
+    template_name = 'real_estate/Lab1/mainpage.html'
+    context_object_name = 'realty'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Главная")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return RealEstate.objects.filter(purchased=True).order_by('-time_create')[:1]
+
+
+class AboutCompany(DataMixin, ListView):
+    model = RealEstate
+    template_name = 'real_estate/Lab1/about.html'
+    context_object_name = 'realty'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="О компании")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def get_queryset(self):
+        return RealEstate.objects.filter(purchased=True)
+
+
+class Sertificate(DataMixin, TemplateView):
+    template_name = 'real_estate/Lab1/sertificate.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Сертификат')
+
+        return dict(list(context.items()) + list(c_def.items()))
