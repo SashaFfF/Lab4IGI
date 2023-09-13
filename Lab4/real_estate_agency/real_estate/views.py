@@ -25,7 +25,7 @@ class RealEstateHome(DataMixin, ListView):
         return RealEstate.objects.filter(purchased=True)
 
 
-class ShowDelas(DataMixin, ListView):
+class ShowDeals(DataMixin, ListView):
     model = Deal
     template_name = 'real_estate/deals.html'
     context_object_name = 'deals'
@@ -55,7 +55,7 @@ class ShowDelas(DataMixin, ListView):
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddDealForm
     template_name = 'real_estate/addpage.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('deals')
     login_url = reverse_lazy('home') # указывает адрес перенаправления для неавторизированного пользователя
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -210,3 +210,17 @@ class Sertificate(DataMixin, TemplateView):
         c_def = self.get_user_context(title='Сертификат')
 
         return dict(list(context.items()) + list(c_def.items()))
+
+
+class ShowEmployees (DataMixin, ListView):
+    model = Employee
+    template_name = 'real_estate/Lab1/employees.html'
+    context_object_name = 'employees'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Сотрудники")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Employee.objects.all()

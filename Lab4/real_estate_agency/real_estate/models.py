@@ -37,6 +37,7 @@ class RealEstate(models.Model):
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации недвижимости")
     area = models.DecimalField(decimal_places=2, max_digits=5, verbose_name="Площадь")
     price = models.DecimalField(decimal_places=2, max_digits=10, verbose_name="Цена")
+    photo = models.ImageField(upload_to="images", verbose_name="Фото", default="images/default_home.png")
     purchased = models.BooleanField(verbose_name="Актуальность")
 
     owner = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name="Владелец")
@@ -82,13 +83,25 @@ class Client(models.Model):
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
 
+class Position(models.Model):
+    name = models.CharField(max_length=20, verbose_name="Название должности")
+    description = models.TextField(verbose_name="Описание обязанностей")
+    is_vacant = models.BooleanField(verbose_name="Статус")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Должность'
+        verbose_name_plural = 'Должности'
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
     phone_number = models.CharField(max_length=13, verbose_name="Номер телефона")
-    position = models.CharField(max_length=100, verbose_name="Должность")
-    # photo = models.ImageField()
+    position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name="Должность")
+    photo = models.ImageField(upload_to="images", verbose_name="Фото", default="default_avatar.png")
+    email = models.EmailField(max_length=200, verbose_name="Адрес электронной почты", default="fff@gmail.com")
 
     def __str__(self):
         return str(self.last_name) + " " + str(self.first_name)
@@ -110,20 +123,37 @@ class Deal(models.Model):
         verbose_name_plural = 'Сделки'
 
 
-# class PromotionalCode(models.Model):
-#     title = models.CharField(max_length=150, verbose_name="Заголовок")
-#     description = models.TextField(verbose_name="Описание")
-#     start_date = models.DateTimeField( verbose_name="Дата начала действия промокода")
-#     end_date = models.DateTimeField(verbose_name="Дата окончания действия промокода")
-#
-#     def __str__(self):
-#         return self.title
-#
-#     class Meta:
-#         verbose_name = 'Промокод'
-#         verbose_name_plural = 'Промокоды'
+#Lab1
+
+class Article (models.Model):
+    title = models.CharField(max_length=150, verbose_name="Заголовок")
+    description = models.TextField(verbose_name="Описание")
+    image = models.ImageField(upload_to="images", verbose_name="Изображение", default="logo.png")
+
+    class Meta:
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
 
 
-# class Position(models.Model):
-#     name = models.CharField(max_length=20, verbose_name="Название должности")
-#     description = models.CharField(verbose_name="Описание обязанностей")
+class Question(models.Model):
+    description = models.TextField(verbose_name="Вопрос")
+    answer = models.TextField(verbose_name="Ответ")
+
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
+
+class PromotionalCode(models.Model):
+    title = models.CharField(max_length=150, verbose_name="Заголовок")
+    description = models.TextField(verbose_name="Описание")
+    start_date = models.DateTimeField( verbose_name="Дата начала действия промокода")
+    end_date = models.DateTimeField(verbose_name="Дата окончания действия промокода")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Промокод'
+        verbose_name_plural = 'Промокоды'
+
+

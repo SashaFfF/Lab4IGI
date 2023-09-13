@@ -1,8 +1,8 @@
 {% extends 'real_estate/base.html' %}
-<div id="heade">
-	<h1>{e2yz</h1>
-	</div>
+
+
 {% block content %}
+<p><a href="{% url 'add_page' %}" target="_top">Оформить договор</a></p>
 <ul class="list-articles">
 	{% for d in deals %}
 	<hr/>

@@ -1,0 +1,15 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1 align="middle">Наши сотрудники</h1>
+{% for e in employees %}
+<hr/>
+{% if e.photo %}
+<p><img class="img-article-left thumb" src="{{e.photo.url}}"></p>
+<h2>{{e}}</h2>
+	<p><b>Должность: </b>{{ e.position }}</p>
+    <p><b>Номер телефона: </b>{{ e.phone_number }}</p>
+	<p><b>Адрес электронной почты: </b>{{ e.email }}</p>
+{% endif %}
+	{% endfor %}
+{% endblock %}

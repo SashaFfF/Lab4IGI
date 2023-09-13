@@ -6,7 +6,9 @@
 <!--{% if post.photo %}-->
 <!--<p><img class="img-article-left" src="{{post.photo.url}}"></p>-->
 <!--{% endif %}-->
-
+{% if realty.photo %}
+<p><img src="{{realty.photo.url}}"></p>
+{% endif %}
 {{realty.description|linebreaks}}
 <p><b>Тип недвижимоти: </b>{{realty.type}} </p>
 <p><b>Тип услуги: </b>{{realty.service_type}} </p>
