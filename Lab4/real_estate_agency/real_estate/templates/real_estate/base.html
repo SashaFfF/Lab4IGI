@@ -43,10 +43,7 @@
 
 {% show_types 'type' type_selected %}
 
-		<li class="share">
-		<p>Наш канал</p>
-		<a class="share-yt" href="https://www.youtube.com/channel/UClJzWfGWuGJL2t-3dYKcHTA/playlists" target="_blank" rel="nofollow"></a>
-		</li>
+		<li><a href="{% url 'articles' %}">Наши новости</a></li>
 	</ul>
 </td>
 <!-- Конец Sidebar'а -->
@@ -72,7 +69,7 @@
 
         {% for p in paginator.page_range %}
 		{% if page_obj.number == p %}
-		<li clas = "page-num page-num-selected">{{ p }}</li>
+		<li class = "page-num page-num-selected">{{ p }}</li>
 		{% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
 
         <li class="page-num">

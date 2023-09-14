@@ -1,0 +1,17 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1 align="middle">Новости о нас</h1>
+{% for a in articles %}
+<hr/>
+<p><img class="img-article-left thumb" src="{{a.image.url}}"></p>
+<h2>{{ a.title }}</h2>
+<details>
+  <summary>Подробнее...</summary>
+  <p>{{ a.description }}</p>
+</details>
+<hr/>
+	{% endfor %}
+{% endblock %}
+
+

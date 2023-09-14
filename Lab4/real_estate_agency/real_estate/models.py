@@ -130,6 +130,9 @@ class Article (models.Model):
     description = models.TextField(verbose_name="Описание")
     image = models.ImageField(upload_to="images", verbose_name="Изображение", default="logo.png")
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
