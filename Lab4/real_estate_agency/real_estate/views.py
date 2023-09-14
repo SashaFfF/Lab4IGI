@@ -238,3 +238,17 @@ class ShowArticles (DataMixin, ListView):
 
     def get_queryset(self):
         return Article.objects.all()
+
+
+class ShowQuestions (DataMixin, ListView):
+    model = Question
+    template_name = 'real_estate/Lab1/questions.html'
+    context_object_name = 'questions'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Вопросы")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Question.objects.all()

@@ -1,0 +1,13 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1 align="middle">Вопросы</h1>
+{% for q in questions %}
+<hr/>
+<h2>{{ q.description }}</h2>
+<details>
+  <summary>Ответ</summary>
+  <p>{{ q.answer }}</p>
+</details>
+	{% endfor %}
+{% endblock %}

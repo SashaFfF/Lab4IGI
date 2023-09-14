@@ -141,6 +141,7 @@ class Article (models.Model):
 class Question(models.Model):
     description = models.TextField(verbose_name="Вопрос")
     answer = models.TextField(verbose_name="Ответ")
+    date = models.DateTimeField(auto_now_add=True, verbose_name="Дата публикации вопроса")
 
     class Meta:
         verbose_name = 'Вопрос'

@@ -16,4 +16,5 @@ urlpatterns = [
     path('sertificate/', Sertificate.as_view(), name='sertificate'),
     path('employees/', ShowEmployees.as_view(), name='employees'),
     path('articles/', ShowArticles.as_view(), name='articles'),
+    path('questions/', ShowQuestions.as_view(), name='questions'),
 ]

@@ -37,7 +37,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'description', 'answer')
+    list_display = ('id', 'description', 'answer', 'date')
 
 
 class PromotionalCodeAdmin(admin.ModelAdmin):
