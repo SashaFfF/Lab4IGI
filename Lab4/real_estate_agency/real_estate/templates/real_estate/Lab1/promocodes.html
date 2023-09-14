@@ -1,0 +1,37 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+  <hr>
+  {% for p in promocodes %}
+    {% if p.is_active is True %}
+      <ul class="list-articles">
+        <li>
+          <div class="article-panel">
+            <p class="first">Действует</p>
+          </div>
+          <h2>{{ p.title }}</h2>
+          {% autoescape on %}
+          {{p.description|linebreaks}}
+          {% endautoescape %}
+          <p class="last">Начало действия промокода: {{p.start_date|date:"d-m-Y H:i:s"}}</p>
+          <p class="last">Конец действия промокода: {{p.end_date|date:"d-m-Y H:i:s"}}</p>
+        </li>
+      </ul>
+    {% else %}
+      <ul class="list-articles">
+        <li>
+          <div class="article-panel">
+            <p class="first">В архиве</p>
+          </div>
+          <h2>{{ p.title }}</h2>
+          {% autoescape on %}
+          {{p.description|linebreaks}}
+          {% endautoescape %}
+          <p class="last">Начало действия промокода: {{p.start_date|date:"d-m-Y H:i:s"}}</p>
+          <p class="last">Конец действия промокода: {{p.end_date|date:"d-m-Y H:i:s"}}</p>
+        </li>
+      </ul>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -18,7 +18,7 @@ class RealEstateHome(DataMixin, ListView):
     
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Главная страница")
+        c_def = self.get_user_context(title="Недвижимость")
         return dict(list(context.items())+list(c_def.items()))
 
     def get_queryset(self):
@@ -252,3 +252,31 @@ class ShowQuestions (DataMixin, ListView):
 
     def get_queryset(self):
         return Question.objects.all()
+
+
+class ShowPositions (DataMixin, ListView):
+    model = Position
+    template_name = 'real_estate/Lab1/positions.html'
+    context_object_name = 'positions'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Список вакансий")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Position.objects.filter(is_vacant=True)
+
+
+class ShowPromocodes (DataMixin, ListView):
+    model = PromotionalCode
+    template_name = 'real_estate/Lab1/promocodes.html'
+    context_object_name = 'promocodes'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Промокоды")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return PromotionalCode.objects.all()

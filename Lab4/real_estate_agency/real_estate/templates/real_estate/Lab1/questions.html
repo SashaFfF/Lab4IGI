@@ -1,10 +1,11 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
-<h1 align="middle">Вопросы</h1>
+<h1>{{ title }}</h1>
 {% for q in questions %}
 <hr/>
 <h2>{{ q.description }}</h2>
+    <p class="last">Дата публикации вопроса: {{q.date|date:"d-m-Y H:i:s"}}</p>
 <details>
   <summary>Ответ</summary>
   <p>{{ q.answer }}</p>

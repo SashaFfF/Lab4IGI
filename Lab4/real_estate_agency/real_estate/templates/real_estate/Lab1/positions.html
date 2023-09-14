@@ -1,0 +1,10 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+{% for p in positions %}
+<hr/>
+<h2>{{ p.name }}</h2>
+	<p><b>Описание обязанностей: </b>{{ p.description }}</p>
+	{% endfor %}
+{% endblock %}

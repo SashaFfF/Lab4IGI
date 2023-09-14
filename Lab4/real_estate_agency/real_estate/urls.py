@@ -17,4 +17,6 @@ urlpatterns = [
     path('employees/', ShowEmployees.as_view(), name='employees'),
     path('articles/', ShowArticles.as_view(), name='articles'),
     path('questions/', ShowQuestions.as_view(), name='questions'),
+    path('positions/', ShowPositions.as_view(), name='positions'),
+    path('promocodes/', ShowPromocodes.as_view(), name='promocodes'),
 ]

@@ -152,6 +152,7 @@ class PromotionalCode(models.Model):
     description = models.TextField(verbose_name="Описание")
     start_date = models.DateTimeField( verbose_name="Дата начала действия промокода")
     end_date = models.DateTimeField(verbose_name="Дата окончания действия промокода")
+    is_active = models.BooleanField(verbose_name="Активен", default=True)
 
     def __str__(self):
         return self.title
@@ -161,3 +162,12 @@ class PromotionalCode(models.Model):
         verbose_name_plural = 'Промокоды'
 
 
+class Comment(models.Model):
+    name = models.CharField(max_length=250, verbose_name="Имя пользователя")
+    comment = models.TextField(verbose_name="Отзыв")
+    grade = models.IntegerField(verbose_name="Оценка")
+    date = models.DateTimeField(auto_now_add=True, verbose_name="Дата написания отзыва")
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
