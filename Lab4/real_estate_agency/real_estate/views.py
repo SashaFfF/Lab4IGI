@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import *
 from .forms import *
-from django.views.generic import ListView, DetailView, CreateView, TemplateView
+from django.views.generic import ListView, DetailView, CreateView, TemplateView, FormView
 from .utils import *
 
 
@@ -280,3 +280,45 @@ class ShowPromocodes (DataMixin, ListView):
 
     def get_queryset(self):
         return PromotionalCode.objects.all()
+
+
+class ShowComments (DataMixin, ListView):
+    model = Comment
+    template_name = 'real_estate/Lab1/comments.html'
+    context_object_name = 'comments'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Отзывы")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Comment.objects.all()
+
+
+# class LeaveComment(LoginRequiredMixin, DataMixin, CreateView):
+#     form_class = CommentForm
+#     template_name = 'real_estate/Lab1/leave_comment.html'
+#     success_url = reverse_lazy('comments')
+#     login_url = reverse_lazy('home') # указывает адрес перенаправления для неавторизированного пользователя
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title="Оставить отзыв")
+#         return dict(list(context.items()) + list(c_def.items()))
+
+
+class AddComment(LoginRequiredMixin, DataMixin, FormView):
+    template_name = 'real_estate/Lab1/leave_comment.html'
+    form_class = CommentForm
+    success_url = reverse_lazy('comments')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Оставить отзыв")
+        return dict(list(context.items()) + list(c_def.items()))
+
+    def form_valid(self, form):
+        form.instance.name = self.request.user.username
+        form.save()
+        return super().form_valid(form)

@@ -1,0 +1,28 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+  <hr>
+  {% if request.user.is_authenticated %}
+		<a href="{% url 'leave_comment' %}" target="_top">Оставить отзыв</a></li>
+  {% else %}
+		<a href="{% url 'logout' %}" target="_top">Оставить отзыв</a></li>
+  {% endif %}
+
+
+  <hr/>
+  {% for c in comments %}
+      <ul class="list-articles">
+        <li>
+          <div class="article-panel">
+            <p class="first">Дата публикации отзыва: {{c.date|date:"d-m-Y H:i:s"}}</p>
+          </div>
+          <h2>{{ c.name }}</h2>
+            <h3>Оценка: {{ c.grade }}</h3>
+          {% autoescape on %}
+          {{c.comment|linebreaks}}
+          {% endautoescape %}
+        </li>
+      </ul>
+  {% endfor %}
+{% endblock %}

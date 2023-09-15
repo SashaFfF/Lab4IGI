@@ -19,4 +19,6 @@ urlpatterns = [
     path('questions/', ShowQuestions.as_view(), name='questions'),
     path('positions/', ShowPositions.as_view(), name='positions'),
     path('promocodes/', ShowPromocodes.as_view(), name='promocodes'),
+    path('comments/', ShowComments.as_view(), name='comments'),
+    path('leave_comment/', AddComment.as_view(), name='leave_comment'),
 ]

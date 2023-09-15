@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.http import request
 
 from .models import *
 
@@ -32,6 +33,20 @@ class LoginUserForm(AuthenticationForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
 
-# class DealForm(AuthenticationForm):
+# class CommentForm(forms.ModelForm):
 #     class Meta:
-#         model = Deal
+#         model = Comment
+#         fields = '__all__'
+
+
+class CommentForm(forms.ModelForm):
+    def __int__(self, *args, **kwargs):
+        super().__int__(*args, **kwargs)
+
+    class Meta:
+        model = Comment
+        fields = ['comment', 'grade']
+        widgets = {
+            'comment': forms.Textarea(),
+            'grade': forms.NumberInput(),
+        }

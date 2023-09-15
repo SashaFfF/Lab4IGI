@@ -49,6 +49,11 @@ class PositionAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'is_vacant')
     list_display_links = ('id', 'name')
 
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'grade', 'date')
+    list_display_links = ('id', 'name')
+
 admin.site.register(RealEstate, RealEstateAdmin)
 admin.site.register(PropertyType, PropertyTypeAdmin)
 admin.site.register(ServiceType)
@@ -60,3 +65,4 @@ admin.site.register(Article, ArticleAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(PromotionalCode, PromotionalCodeAdmin)
 admin.site.register(Position, PositionAdmin)
+admin.site.register(Comment, CommentAdmin)
