@@ -1,0 +1,13 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+    <article >
+        <h1>{{ pushcase.title }}</h1>
+        {% if pushcase.image %}
+            <p><img src="{{ pushcase.image.url }}" alt="{{ pushcase.title }}"></p>
+        {% endif %}
+        <p>{{ pushcase.description }}</p>
+    </article>
+
+
+{% endblock %}

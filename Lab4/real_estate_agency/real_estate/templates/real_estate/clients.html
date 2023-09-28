@@ -1,0 +1,38 @@
+{% extends 'real_estate/base.html' %}
+
+
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<table>
+  <style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+</style>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>Имя</td>
+    <td>Фамилия</td>
+    <td>Номер телефона</td>
+  </tr>
+
+{% for c in clients %}
+    <tr>
+      <td>{{ c.id }}</td>
+      <td>{{ c.first_name }}</td>
+      <td>{{ c.last_name }}</td>
+      <td>{{ c.phone_number }}</td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

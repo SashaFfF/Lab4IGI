@@ -428,3 +428,39 @@ ul.lang-list li a:hover {color: #fdc073;}
 .list-pages .page-num-selected:hover {
 	box-shadow: none;
 }
+#////////
+.nav-content {
+    background-color: #333;
+    width: 250px; /* Ширина боковой панели */
+    height: 100%; /* Полная высота боковой панели */
+    position: fixed; /* Зафиксированное положение */
+    top: 0; /* Отступ сверху */
+    left: 0; /* Отступ слева */
+    padding-top: 20px; /* Отступ сверху для пунктов меню */
+    color: #fff; /* Цвет текста */
+}
+
+.nav-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-content li {
+    margin-bottom: 10px; /* Отступ между пунктами меню */
+}
+
+.nav-content a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-content .selected {
+    font-weight: bold;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}

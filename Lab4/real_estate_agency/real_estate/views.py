@@ -1,5 +1,6 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.urls import reverse_lazy
@@ -9,6 +10,9 @@ from .models import *
 from .forms import *
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, FormView
 from .utils import *
+import numpy as np
+from matplotlib import pyplot as plt
+# from qsstats import QuerySetStats
 
 
 class RealEstateHome(DataMixin, ListView):
@@ -35,8 +39,36 @@ class ShowDeals(DataMixin, ListView):
         c_def = self.get_user_context(title="Оформленные договоры")
         return dict(list(context.items()) + list(c_def.items()))
 
+
     def get_queryset(self):
         return Deal.objects.all()
+
+
+def generate_chart(request):
+        x = np.linspace(0, 10, 100)
+        y = np.sin(x)
+
+        plt.plot(x, y)
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title('График')
+
+        # Сохранение графика как изображения
+        plt.savefig('chart.png')
+
+        return render(request, 'chart.html')
+
+# def view_func(request):
+#         start_date = ...
+#         end_date = ...
+#
+#         queryset = RealEstate.objects.all()
+#         # считаем количество платежей...
+#         qsstats = QuerySetStats(queryset, date_field='datetime', aggregate=Count('id'))
+#         # ...в день за указанный период
+#         values = qsstats.time_series(start_date, end_date, interval='days')
+#
+#         return render('chart.html', {'values': values})
 
 # def index(request):
 #     realty = RealEstate.objects.all()
@@ -322,3 +354,85 @@ class AddComment(LoginRequiredMixin, DataMixin, FormView):
         form.instance.name = self.request.user.username
         form.save()
         return super().form_valid(form)
+
+
+class ShowClients (DataMixin, ListView):
+    model = Client
+    template_name = 'real_estate/clients.html'
+    context_object_name = 'clients'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Клиенты")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Client.objects.all()
+
+
+#API
+# class News(DataMixin, ListView):
+#     model = RealEstate
+#     template_name = 'real_estate/api/news.html'
+#     context_object_name = 'posts'
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title='Мировые новости')
+#
+#         return dict(list(context.items()) + list(c_def.items()))
+#
+#
+# class Crypto(DataMixin, ListView):
+#     model = RealEstate
+#     template_name = 'real_estate/api/crypto.html'
+#     context_object_name = 'posts'
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title='Курс биткоина')
+#
+#         return dict(list(context.items()) + list(c_def.items()))
+
+
+
+def news_view(request, article_id):
+    article = Article.objects.all()
+    pushcase = Article.objects.get(pk=article_id)
+
+    context = {
+        'article': article,
+        'pushcase': pushcase
+    }
+    return render(request, 'real_estate/Lab1/news_view.html', context)
+
+def politics_view(request):
+    return render(request, 'real_estate/Lab1/politics.html')
+
+def real_estate_chart(request):
+    # Получите данные из модели RealEstate
+    data = RealEstate.objects.all()
+
+    # Пример: Создайте диаграмму распределения типов недвижимости
+    property_types = PropertyType.objects.annotate(
+        count=Count('realestate')
+    ).values('type', 'count')
+
+    labels = [item['type'] for item in property_types]
+    counts = [item['count'] for item in property_types]
+
+    # Создайте график
+    plt.figure(figsize=(10, 6))
+    plt.bar(labels, counts)
+    plt.xlabel('Тип недвижимости')
+    plt.ylabel('Количество')
+    plt.title('Распределение типов недвижимости')
+
+    # Сохраните график в формате PNG
+    chart_path = 'real_estate/static/real_estate/images/real_estate_chart.png'
+    plt.savefig(chart_path)
+
+    return render(request, 'real_estate/chart.html', {'chart_path': chart_path})
+
+
+

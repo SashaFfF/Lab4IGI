@@ -8,7 +8,7 @@
             <img src="{% static 'real_estate/images/logo.png' %}"/>
         </center>
 <ol>
-    <li><b>Год создания нашей компании:</b> 2022</li>
+    <li><b>Год создания нашей компании:</b> 2023</li>
     <li><b>Недвижимость, представленная на нашем сайте: </b>
         <a href="{% url 'home' %}" target="_top">посмотреть тут</a></li>
 <!--    <li><b>Адреса нашей компании и контактные данные агентов: </b>-->
@@ -22,8 +22,13 @@
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
 </iframe>
-</center>
     <hr/>
+    <audio controls>
+        <source src="{% static 'real_estate/audio/audio.mp3' %}">
+    </audio>
+
+</center>
+<hr/>
     <h2 align="middle">Реквизиты</h2>
     <ol>
         <li><b>Название агентства недвижимости: </b>KeyHouse</li>
@@ -34,5 +39,40 @@
 <h2 align="middle">Сертификат</h2>
 <p><a href="{% url 'sertificate' %}" target="_top">Ссылка на сертификат</a></p>
 <a href="{% static 'real_estate/images/sertificate.pdf' %}" download>Скачать сертификат в формате PDF</a>
+<hr/>
+<h4><abbr title="Агентство Недвижимоcти">АН</abbr></h4><br><br>
+<p><dfn>Агентство Недвижимоcти</dfn> - специализированная коммерческая организация, осуществляющая как правило посреднические услуги между продавцом и конечным покупателем на рынке недвижимости.</p>
+<hr/>
+<h3>Текущее время и дата: {% now "Y-m-d H:i" %}</h3>
+<hr/>
+    <code>
+    <pre>
+    class AddDealForm(forms.ModelForm):
+    def __int__(self, *args, **kwargs):
+        super().__int__(*args, **kwargs)
+        self.fields['owner'].empty_label = "Не выбран"
+        self.fields['agent'].empty_label = "Не выбран"
+        self.fields['buyer'].empty_label = "Не выбран"
+
+    def clean_age(self):
+        age = self.cleaned_data['age']
+
+        if age < 18:
+            raise ValidationError('Вы должны быть старше 18 лет для заключения сделки.')
+
+        return age
+    </pre>
+</code><br><br>
+<hr/>
+    <pre>
+        Я пришёл к тебе с приветом,
+        Рассказать, что солнце встало,
+        Что оно горячим светом
+        По листам затрепетало.
+    </pre>
+<hr/>
+<svg width="100" height="100">
+    <circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg>
 
 {% endblock %}

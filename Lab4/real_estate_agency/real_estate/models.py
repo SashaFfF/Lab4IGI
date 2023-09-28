@@ -117,6 +117,7 @@ class Deal(models.Model):
     buyer = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Покупатель")
     agent = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
     date = models.DateTimeField(auto_now_add=True, verbose_name="Дата сделки")
+    age = models.IntegerField(default=18, verbose_name="Возраст")
 
     class Meta:
         verbose_name = 'Сделка'
@@ -131,11 +132,14 @@ class Article (models.Model):
     image = models.ImageField(upload_to="images", verbose_name="Изображение", default="logo.png")
 
     def __str__(self):
-        return self.title
+        return f"Article {self.id}"
 
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+
+    def get_absolute_url(self):
+        return reverse('news_view', kwargs={'article_id': self.pk})
 
 
 class Question(models.Model):

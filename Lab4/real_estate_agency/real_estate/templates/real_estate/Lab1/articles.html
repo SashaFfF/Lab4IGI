@@ -5,13 +5,17 @@
 {% for a in articles %}
 <hr/>
 <p><img class="img-article-left thumb" src="{{a.image.url}}"></p>
-<h2>{{ a.title }}</h2>
-<details>
-  <summary>Подробнее...</summary>
-  <p>{{ a.description }}</p>
-</details>
-<hr/>
+<!--<h2>{{ a.title }}</h2>-->
+<!--<details>-->
+<!--  <summary>Подробнее...</summary>-->
+<!--  <p>{{ a.description }}</p>-->
+<!--    <p class="link-read-post"><a href="{{ a.get_absolute_url }}" target="_blank">Подробнее</a></p>-->
+<!--</details>-->
+<h2>{{a.title}}</h2>
+	{% autoescape on %}
+	{{a.description|linebreaks|truncatewords:20}}
+	{% endautoescape %}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{{ a.get_absolute_url }}">Читать далее</a></p>
 	{% endfor %}
 {% endblock %}
-
-

@@ -1,0 +1,20 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<code>
+    class AddDealForm(forms.ModelForm):
+    def __int__(self, *args, **kwargs):
+        super().__int__(*args, **kwargs)
+        self.fields['owner'].empty_label = "Не выбран"
+        self.fields['agent'].empty_label = "Не выбран"
+        self.fields['buyer'].empty_label = "Не выбран"
+
+    def clean_age(self):
+        age = self.cleaned_data['age']
+
+        if age < 18:
+            raise ValidationError('Вы должны быть старше 18 лет для заключения сделки.')
+
+        return age
+        </code><br><br>
+{% endblock %}

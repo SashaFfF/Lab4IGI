@@ -5,7 +5,7 @@ urlpatterns = [
     path('', RealEstateHome.as_view(), name='home'),
     path('about/', AboutCompany.as_view(), name='about'),
     path('addpage/', AddPage.as_view(), name='add_page'),
-    path('contact/', contact, name='contact'),
+    path('real_estate_chart/', real_estate_chart, name='real_estate_chart'),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
     path('register/', RegisterUser.as_view(), name='register'),
@@ -21,4 +21,10 @@ urlpatterns = [
     path('promocodes/', ShowPromocodes.as_view(), name='promocodes'),
     path('comments/', ShowComments.as_view(), name='comments'),
     path('leave_comment/', AddComment.as_view(), name='leave_comment'),
+    path('clients/', ShowClients.as_view(), name='clients'),
+    path('news_view/<int:article_id>', news_view, name='news_view'),
+    path('politics/', politics_view, name='politics'),
+    #api
+    # path('news/', News.as_view(), name='news'),
+    # path('crypto/', Crypto.as_view(), name='crypto'),
 ]

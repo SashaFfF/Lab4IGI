@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.http import request
 
 from .models import *
@@ -12,9 +13,17 @@ class AddDealForm(forms.ModelForm):
         self.fields['agent'].empty_label = "Не выбран"
         self.fields['buyer'].empty_label = "Не выбран"
 
+    def clean_age(self):
+        age = self.cleaned_data['age']
+
+        if age < 18:
+            raise ValidationError('Вы должны быть старше 18 лет для заключения сделки.')
+
+        return age
+
     class Meta:
         model = Deal
-        fields = ['real_estate', 'owner', 'buyer','agent'] #позже убрать агента
+        fields = ['real_estate', 'owner', 'buyer', 'age','agent'] #позже убрать агента
         #fields = '__all__'
 
 
