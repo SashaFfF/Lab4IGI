@@ -54,7 +54,7 @@ nav.nav-content {
 }
 
 #footer {
-    background-color: ;
+    background-color: #b2c2d0;
     color: #b2c2d0;
     padding: 10px 0;
     text-align: left;
@@ -71,14 +71,57 @@ h2 {
   margin: 20px 0 15px 0;
 }
 
+        /*Псевдоклассы*/
+/*Псевдоклассы для ссылок*/
 a {
 	color: #9acd32;
 	text-decoration: none;
 }
+/*
+a:visited {
+    color: blue;
+	text-decoration: none;
+}
+*/
 a:hover {
 	color: #9acd32;
 	text-decoration: underline;
 }
+
+a:active {
+    color: red;
+	text-decoration: none;
+}
+
+/*Псевдоклассы для списков поместила в politics.html*/
+
+/* Цитаты*/
+q::before {
+    color: red;
+}
+
+q::after {
+    color: red;
+}
+
+q:lang(ru) {
+    quotes: "\201E" "\201C"
+}
+
+q:lang(en) {
+    quotes: "\00AB" "\00BB"
+}
+
+/*Таблицы*/
+tr:first-of-type {
+    background: #41ab13;
+}
+
+td:first-of-type {
+    background: #88bf1b;
+}
+
+
 
 img {max-width: 600px; height: auto;}
 
@@ -425,10 +468,6 @@ ul.lang-list li a:hover {color: #fdc073;}
 	text-align: left;
 	overflow: hidden;
 }
-#footer a {
-	text-decoration: underline;
-	color: #aaa;
-}
 
 .form-input {
     width: 300px;
@@ -491,7 +530,6 @@ ul.lang-list li a:hover {color: #fdc073;}
 }
 
 
-
                                                                                     /*MainPage*/
         /* Партнеры */
 .partner-block {
@@ -542,6 +580,8 @@ ul.lang-list li a:hover {color: #fdc073;}
         transition: transform 0.3s; /* Плавное увеличение при наведении */
 }
 
+
+
         /* Анимации баннера */
 @keyframes float {
         0% { transform: translateY(0); }
@@ -573,7 +613,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 
                                                                                 /* О компании */
 
-/* Трансформация логотипа  */
+    /* Трансформация логотипа  */
 .logoTransform {
     max-width: 100%; /* Ограничение максимальной ширины */
     max-height: 100%; /* Ограничение максимальной высоты */
@@ -584,3 +624,57 @@ ul.lang-list li a:hover {color: #fdc073;}
     transform: rotate(360deg); /* Поворот логотипа на 360 градусов при наведении */
 }
 
+    /* Сертификат  */
+/*
+div.certificate {
+border: 70px solid #40c4c8;
+padding: 60px;
+border-image:
+url('../images/border-image.png') 400 round round;   }
+*/
+
+.certificate {
+    position: relative;
+    width: 600px; /* Ширина сертификата */
+    height: 600px; /* Высота сертификата */
+    border: 20px solid transparent;
+    border-image-source: url('../images/border-image.png'); /* Изображение для границ */
+    border-image-slice: 20 fill; /* Размер границ и способ заполнения */
+    background-image: url('../images/bg-image.jpg'); /* Фоновое изображение */
+    background-clip: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 40px;
+}
+
+.certificate h4 {
+    padding:15px;
+    font-family: Arial, sans-serif; /* Настройка шрифтов */
+    text-align: center; /* Выравнивание текста по центру */
+    color: #333; /* Цвет текста */
+}
+
+.certificate h1 {
+    padding:15px;
+    font-family: 'Times New Roman', serif; /* Настройка шрифтов */
+    text-align: center; /* Выравнивание текста по центру */
+    color: #000; /* Цвет текста */
+
+    background: radial-gradient(#ffc024, white 50%);
+}
+
+.certificate h2 {
+    font-family: Georgia, serif; /* Настройка шрифтов */
+    text-align: center; /* Выравнивание текста по центру */
+    color: #000; /* Цвет текста */
+}
+
+.certificate p {
+    font-family: Arial, sans-serif; /* Настройка шрифтов */
+    color: #555; /* Цвет текста */
+}
+
+
+
+/* Остальные стили оставьте без изменений. */
