@@ -2,44 +2,53 @@
 {% load static %}
 
 {% block content %}
-    <h2 align="middle" >Баннер компании</h2>
-    <hr/>
-    <center>
-       <img src="{% static 'real_estate/images/banner.png' %}"/>
-    </center>
-    <p align="middle">О компании</a></p>
-    <blockquote cite="http://www.world.org/zenit/index.html"> Знаете, лучшее средство от критики такого рода — хорошая доза некомпетентного управления. Как только вы это получите,
-        навести порядок в Сингапуре уже не удастся. Шалтая-Болтая уже не собрать…
-        активы и недвижимость обесценятся, кресла под министрами зашатаются, безопасность окажется под угрозой, а женщины выстроятся в очередь за черновой работой за рубежом. Я этого не допущу!Зенит — это наивысшая для наблюдателя точка на небосклоне
- в вертикальном направлении, которую, как известно,
- можно легко определить с помощью вертикального отвеса.</blockquote>
-    <p>Как сказал Борис Шопиро, <q>На "рынке недвижимости" движется только цена.</q><p>
 
-    <h2 align="middle">Последняя опубликованная недвижимость</h2>
-    <hr/>
-    <ul>
-        {% for r in realty %}
-            {% if forloop.last %}
-            <li><div class="article-panel">
-	        <p class="first">Тип недвижимости: {{r.type}}</p>
-	        <p class="last">Дата: {{r.time_create|date:"d-m-Y H:i:s"}}</p>
+<h2 align="middle" class="companyName">KeyHouse</h2>
+<h2 align="middle">Баннер компании</h2>
+<hr/>
+<center>
+    <img src="{% static 'real_estate/images/keyhouse_logo.png' %}" class="banner-image"/>
+</center>
+<blockquote cite="http://www.world.org/zenit/index.html"> Знаете, лучшее средство от критики такого рода — хорошая доза
+    некомпетентного управления. Как только вы это получите,
+    навести порядок в Сингапуре уже не удастся. Шалтая-Болтая уже не собрать…
+    активы и недвижимость обесценятся, кресла под министрами зашатаются, безопасность окажется под угрозой, а женщины
+    выстроятся в очередь за черновой работой за рубежом. Я этого не допущу!Зенит — это наивысшая для наблюдателя точка
+    на небосклоне
+    в вертикальном направлении, которую, как известно,
+    можно легко определить с помощью вертикального отвеса.
+</blockquote>
+<p>Как сказал Борис Шопиро, <q>На "рынке недвижимости" движется только цена.</q><p>
+
+<h2 align="middle">Последняя опубликованная недвижимость</h2>
+<hr/>
+<ul>
+    {% for r in realty %}
+    {% if forloop.last %}
+    <li>
+        <div class="article-panel">
+            <p class="first">Тип недвижимости: {{r.type}}</p>
+            <p class="last">Дата: {{r.time_create|date:"d-m-Y H:i:s"}}</p>
         </div>
-                <h2>{{r.title}}</h2>
-                {{r.description|linebreaks}}
-                <p class="link-read-post"><a href="{{ r.get_absolute_url }}">Подробнее</a></p>
-            {% endif %}
+        <div class="article-info">
+            <h2>{{r.title}}</h2>
+            {{r.description|linebreaks}}
+            <p class="link-read-post"><a href="{{ r.get_absolute_url }}">Подробнее</a></p>
+        </div>
+        {% endif %}
         {% endfor %}
-    </ul>
+    </li>
+</ul>
+
 <h2 align="middle">Наши спонсоры</h2>
-    <hr/>
-<p align="middle">
-        <a href="https://belarusbank.by/ru/fizicheskim_licam/31886/internet_banking">
-            <img src="{% static 'real_estate/images/belarusbank.jpg' %}" width="60" height="50" alt="Пример">
-        </a>
-        <a href="https://www.alfabank.by/">
-            <img src="{% static 'real_estate/images/alfabank.png' %}" width="60" height="50" alt="Пример">
-        </a>
-
-    </p>
-
+<hr/>
+<div class="partner-icons">
+    <a href="https://belarusbank.by/ru/fizicheskim_licam/31886/internet_banking" class="partner-block">
+        <img src="{% static 'real_estate/images/belarusbank.png' %}" width="70" height="60" alt="Пример">
+    </a>
+    <a href="https://www.alfabank.by/" class="partner-block">
+        <img src="{% static 'real_estate/images/alfabank.png' %}"
+             width="70" height="60" alt="Пример">
+    </a>
+</div>
 {% endblock %}

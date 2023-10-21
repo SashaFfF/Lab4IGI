@@ -1,3 +1,4 @@
+
 html, body {
 	font-family: 'Arial';
 	margin: 0;
@@ -5,6 +6,69 @@ html, body {
 	height: 100%;
 	width: 100%;
 	color: #444;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #b2c2d0;
+    color: #fff;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+/* Стиль для nav */
+nav.nav-content {
+    position: fixed;
+    top: 80px; /* Вы можете установить желаемую высоту */
+    bottom: 100px;
+    left: 0;
+    width: 200px; /* Пример: ширина навигации */
+    height: 100%;
+    background: #E5E4E2;
+    color: #fff;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.nav-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-content li {
+    margin-bottom: 10px; /* Отступ между пунктами меню */
+}
+
+.nav-content a {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-content .selected {
+    color: #1A153F;
+    font-weight: bold;
+}
+
+#footer {
+    background-color: ;
+    color: #b2c2d0;
+    padding: 10px 0;
+    text-align: left;
+    position: fixed;
+    bottom: 0; /* Фиксируем footer внизу */
+    width: 100%;
+    z-index: 1000;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: bold;
+  font-family: Yandex Sans Display Light;
+  margin: 20px 0 15px 0;
 }
 
 a {
@@ -75,13 +139,8 @@ ul.list-articles li {
 
 .clear {clear: both;}
 
-.header {
-	background: #b2c2d0;
-	height: 60px;
-}
-
 .logo {
-	background: url('../images/main(1).ico') no-repeat 10px 5px;
+	background: url('../images/main.ico') no-repeat 10px 5px;
 	width: 60px;
 	height: 60px;
 }
@@ -262,7 +321,9 @@ ul.content-table li a {
 ul.content-table li a:hover {color: #F0711C;}
 
 .content-text {
-	margin: 60px 0 0 30px;
+    margin-left: 250px; /* Ширина навигационной панели + небольшой отступ */
+    margin-top: 90px;
+    padding: 50px;
 	color: #000;
 	font-size: 20px;
 	font-family: Yandex Sans Display Light;
@@ -428,39 +489,98 @@ ul.lang-list li a:hover {color: #fdc073;}
 .list-pages .page-num-selected:hover {
 	box-shadow: none;
 }
-#////////
-.nav-content {
-    background-color: #333;
-    width: 250px; /* Ширина боковой панели */
-    height: 100%; /* Полная высота боковой панели */
-    position: fixed; /* Зафиксированное положение */
-    top: 0; /* Отступ сверху */
-    left: 0; /* Отступ слева */
-    padding-top: 20px; /* Отступ сверху для пунктов меню */
-    color: #fff; /* Цвет текста */
+
+
+
+                                                                                    /*MainPage*/
+        /* Партнеры */
+.partner-block {
+    width: 100px; /* Задайте нужную ширину */
+    height: 100px; /* Задайте нужную высоту */
+    background-color: #f0f0f0; /* Цвет фона */
+    border-radius: 50%; /* Скругление углов для круглой формы */
+    border: 2px solid #CFECEC;
+    box-shadow: 5px 5px 7px rgba(135, 206, 235, 0.2); /* Тень */
+    display: flex; /* Используем Flexbox */
+    align-items: center; /* Выравниваем по вертикали */
+    justify-content: center; /* Выравниваем по горизонтали */
+    margin: 10px; /* Внешний отступ между блоками */
 }
 
-.nav-content ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.partner-icons {
+    display: flex; /* Используем Flexbox */
+    flex-direction: row; /* Иконки идут вряд (горизонтально) */
+    gap: 10px; /* Расстояние между иконками */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    justify-content: center;
 }
 
-.nav-content li {
-    margin-bottom: 10px; /* Отступ между пунктами меню */
+.partner-icons img {
+    max-width: 100%; /* Максимальная ширина изображения в блоке */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    justify-content: center;
+}
+.partner-image {
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Небольшая тень */
 }
 
-.nav-content a {
-    text-decoration: none;
-    color: #fff;
+
+.companyName {
+        font-family: "Arial", sans-serif;
+        font-size: 50px;
+        letter-spacing: 2px;
+        color: #1A153F;
 }
 
-.nav-content .selected {
-    font-weight: bold;
+.banner-image {
+        max-width: 100%; /* Максимальная ширина изображения */
+        margin: 25px;
+        max-width: 700px;
+        max-height: 400px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Небольшая тень */
+        animation: float 1s ease-in-out infinite alternate; /* Анимация плавания */
+        transition: transform 0.3s; /* Плавное увеличение при наведении */
 }
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+
+        /* Анимации баннера */
+@keyframes float {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-20px); }
 }
+
+        /* Относительное позиционирование для последней опубликованной статьи */
+.article-panel {   /* тип недвижимости и дата */
+    position: relative;
+    background: #562;
+    padding: 5px 100px 10px 15px; /*  отступы вокруг блока */
+    box-sizing: border-box;
+    overflow: hidden;  /*Скрываем возможное переполнение содержимого */
+    color: #555;
+}
+
+.article-info {
+     padding: 20px;
+     position: relative;
+     background-color: #fff;
+}
+
+.link-read-post {
+    text-align: right;
+    margin: 10px;
+}
+
+
+
+                                                                                /* О компании */
+
+/* Трансформация логотипа  */
+.logoTransform {
+    max-width: 100%; /* Ограничение максимальной ширины */
+    max-height: 100%; /* Ограничение максимальной высоты */
+    transition: transform 0.5s; /* Плавное изменение угла поворота при наведении */
+}
+
+.logoTransform:hover {
+    transform: rotate(360deg); /* Поворот логотипа на 360 градусов при наведении */
+}
+

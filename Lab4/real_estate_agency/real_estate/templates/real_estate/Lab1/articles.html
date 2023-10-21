@@ -1,21 +1,61 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
+<style>
+.news-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.news-item {
+    width: calc(30% - 20px);
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.img-article-left {
+    max-width: 100%;
+}
+
+.news-description {
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ellipsis::before {
+    content: '...';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: white;
+}
+
+.empty {
+    /* Стили для пустых элементов */
+    width: calc(33.33% - 20px);
+    margin: 10px;
+    padding: 15px;
+    /* Другие стили */
+}
+
+</style>
+
 <h1 align="middle">Новости о нас</h1>
-{% for a in articles %}
-<hr/>
-<p><img class="img-article-left thumb" src="{{a.image.url}}"></p>
-<!--<h2>{{ a.title }}</h2>-->
-<!--<details>-->
-<!--  <summary>Подробнее...</summary>-->
-<!--  <p>{{ a.description }}</p>-->
-<!--    <p class="link-read-post"><a href="{{ a.get_absolute_url }}" target="_blank">Подробнее</a></p>-->
-<!--</details>-->
-<h2>{{a.title}}</h2>
-	{% autoescape on %}
-	{{a.description|linebreaks|truncatewords:20}}
-	{% endautoescape %}
-			<div class="clear"></div>
-			<p class="link-read-post"><a href="{{ a.get_absolute_url }}">Читать далее</a></p>
-	{% endfor %}
+<div class="news-list">
+    {% for a in articles %}
+    <div class="news-item">
+        <img class="img-article-left thumb" src="{{a.image.url}}">
+        <h2>{{a.title}}</h2>
+        <p class="news-description">
+            {{a.description|truncatewords:20}}
+            <span class="ellipsis">...</span>
+        </p>
+        <p class="link-read-post"><a href="{{ a.get_absolute_url }}">Читать далее</a></p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

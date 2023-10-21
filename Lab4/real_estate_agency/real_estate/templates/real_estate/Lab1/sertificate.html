@@ -2,7 +2,80 @@
 {% load static %}
 
 {% block content %}
-    <div align="middle">
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.certificate {
+    position: relative;
+    width: 800px;
+    margin: 50px auto;
+    background-image: url('certificate-background.jpg'); /* Фоновое изображение */
+    background-size: cover;
+}
+
+.certificate-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('certificate-border.png'); /* Изображение для границ */
+    background-size: 100% 100%;
+    z-index: -1; /* Задаем z-index, чтобы границы находились под текстом */
+}
+
+.left-branch, .right-branch {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%; /* Разделяем на левую и правую ветки */
+    background-image: url('branch.png'); /* Изображение для ветвей */
+    background-size: 100% 100%;
+}
+
+.left-branch {
+    left: 0;
+}
+
+.right-branch {
+    right: 0;
+}
+
+.certificate-content {
+    padding: 40px;
+    text-align: center;
+    z-index: 1; /* Задаем z-index для текста, чтобы он находился над границами */
+}
+
+h1 {
+    font-size: 32px;
+    color: #000;
+    margin: 0;
+}
+
+h2 {
+    font-size: 28px;
+    color: #FF0000; /* Цвет шрифта */
+}
+
+p {
+    font-size: 18px;
+    color: #333; /* Цвет шрифта */
+}
+
+</style>
+
+
+<div class="certificate">
+    <div class="certificate-border">
+        <div class="left-branch"></div>
+        <div class="right-branch"></div>
+    </div>
+    <div class="certificate-content">
         <h4>Сертификат от Министерства Финансов</h4>
         <hr/>
         <h1>Cвидетельство</h1>
@@ -14,10 +87,12 @@
         <h2><b>Общество с ограниченной ответственность "KeyHouse"</b></h2>
         <h2>(ИНН 7731340252)</h2>
         <h2><b><u>Реестровый номер: 8241</u></b></h2>
+
+        <p align="left">Самый Главный</p>
+        <p align="left">Самый Главный в Министерстве Финансов</p>
     </div>
+</div>
 
-    <p>Самый Главный</p>
-    <p>Самый Главный в Министерстве Финансов</p>
 
-    <hr/>
+<hr/>
 {% endblock %}

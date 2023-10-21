@@ -4,14 +4,16 @@
 <html>
 <head>
 	<title>{{title}}</title>
+    <link type="text/css" href="{% static 'real_estate/css/reset.css' %}" rel="stylesheet" />
 	<link type="text/css" href="{% static 'real_estate/css/styles.css' %}" rel="stylesheet" />
 	<link rel="shortcut icon" href="{% static 'real_estate/images/logo.png' %}" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<meta name="description" content="Сайт агентства недвижимости">
     <meta name="author" content="Филипеня Александра гр.153503">
 </head>
 <body>
 <header>
-    <div class="header">
+    <div>
         <ul id="mainmenu" class="mainmenu">
             <li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
             {% for m in menu %}
@@ -40,7 +42,7 @@
     </ul>
 </nav>
 <!-- Блок контента -->
-	<div class="content-text">
+	<div class="content-text ">
 {% block content %}
 {% endblock %}
 
