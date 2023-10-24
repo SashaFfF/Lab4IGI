@@ -1,14 +1,61 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
+<style>
+/* Стили для страницы с промокодами */
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+ul.list-articles {
+  list-style: none;
+  padding: 0;
+}
+
+ul.list-articles li {
+  background-color: #f9f9f9;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+p.last {
+  font-weight: bold;
+}
+
+.red {
+  padding: 5px;
+  border-radius: 10px;
+  background: #e34d4d;
+  color: white;
+}
+.green {
+  padding: 5px;
+  border-radius: 10px;
+  background: #51c449;
+  color: white;
+}
+</style>
 <h1>{{ title }}</h1>
-  <hr>
   {% for p in promocodes %}
     {% if p.is_active is True %}
       <ul class="list-articles">
         <li>
-          <div class="article-panel">
-            <p class="first">Действует</p>
+          <div class="green">
+            <p class="first" style="font-size: 18px">Действует</p>
           </div>
           <h2>{{ p.title }}</h2>
           {% autoescape on %}
@@ -21,8 +68,8 @@
     {% else %}
       <ul class="list-articles">
         <li>
-          <div class="article-panel">
-            <p class="first">В архиве</p>
+          <div class="red">
+            <p class="first" style="font-size: 18px">В архиве</p>
           </div>
           <h2>{{ p.title }}</h2>
           {% autoescape on %}

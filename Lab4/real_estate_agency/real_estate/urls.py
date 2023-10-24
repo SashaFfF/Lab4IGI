@@ -24,6 +24,8 @@ urlpatterns = [
     path('clients/', ShowClients.as_view(), name='clients'),
     path('news_view/<int:article_id>', news_view, name='news_view'),
     path('politics/', politics_view, name='politics'),
+    # additional table
+    path('additional_table.html/', ShowAdditionalTable.as_view(), name='additional_table'),
     #api
     # path('news/', News.as_view(), name='news'),
     # path('crypto/', Crypto.as_view(), name='crypto'),

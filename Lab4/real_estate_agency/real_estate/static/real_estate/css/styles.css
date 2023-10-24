@@ -675,6 +675,24 @@ url('../images/border-image.png') 400 round round;   }
     color: #555; /* Цвет текста */
 }
 
+/* Таблицы */
+table {
+     border-collapse: collapse;  /*Убрать двойные линии между ячейками внутри таблицы*/
+     caption-side: top; /* оформить заголовок таблицы над таблицейоформить заголовок таблицы над таблицей */
+     text-align: left; /* применить горизонтальное и вертикальное выравнивание информации в ячейках и настроить расположение таблицы на странице */
+     vertical-align: middle;
+     margin: 0 auto;
+}
 
+table td:empty {
+    background: #6f888f; /* Изменить фон в пустых ячейках: */
+}
 
-/* Остальные стили оставьте без изменений. */
+td, th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+tr:hover {
+    background-color: #bafa70; /* Цвет фона при наведении курсора */
+}

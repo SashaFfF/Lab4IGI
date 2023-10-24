@@ -1,0 +1,33 @@
+{% extends 'real_estate/base.html' %}
+
+{% block content %}
+<style>
+    td, th {
+    background: #96d8eb;
+    width: 70px;
+    height: 70px;
+    }
+    tr:first-of-type, td:first-of-type {
+    background: #96d8eb;
+    }
+</style>
+<table>
+    <caption>Дополнительная таблица</caption>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td></td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>8</td>
+        <td>9</td>
+    </tr>
+</table>
+<a href="{% url 'clients' %}" target="_top">вернуться</a></li>
+{% endblock %}

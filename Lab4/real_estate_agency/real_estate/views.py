@@ -370,6 +370,19 @@ class ShowClients (DataMixin, ListView):
         return Client.objects.all()
 
 
+class ShowAdditionalTable (DataMixin, ListView):
+    model = Client
+    template_name = 'real_estate/additional_table.html'
+    context_object_name = 'additional_table'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title="Дополнительная таблица")
+        return dict(list(context.items())+list(c_def.items()))
+
+    def get_queryset(self):
+        return Client.objects.all()
+
 #API
 # class News(DataMixin, ListView):
 #     model = RealEstate
@@ -402,7 +415,8 @@ def news_view(request, article_id):
 
     context = {
         'article': article,
-        'pushcase': pushcase
+        'pushcase': pushcase,
+        'menu': menu
     }
     return render(request, 'real_estate/Lab1/news_view.html', context)
 
@@ -432,7 +446,7 @@ def real_estate_chart(request):
     chart_path = 'real_estate/static/real_estate/images/real_estate_chart.png'
     plt.savefig(chart_path)
 
-    return render(request, 'real_estate/chart.html', {'chart_path': chart_path})
+    return render(request, 'real_estate/chart.html', {'chart_path': chart_path, 'menu': menu})
 
 
 

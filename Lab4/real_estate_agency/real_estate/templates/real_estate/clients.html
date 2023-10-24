@@ -3,22 +3,8 @@
 
 
 {% block content %}
-
-<h1>{{ title }}</h1>
 <table>
-  <style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid black;
-  padding: 8px;
-}
-
-</style>
-
+ <caption>Клиенты</caption>
   <tr>
     <td>&nbsp;</td>
     <td>Имя</td>
@@ -35,4 +21,5 @@ td, th {
   </tr>
 {% endfor %}
 </table>
+<a href="{% url 'additional_table' %}" target="_top">дополнительная таблица</a></li>
 {% endblock %}
