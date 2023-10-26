@@ -1,14 +1,41 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
+<style>
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    grid gap: 20px;
+}
+
+.block {
+    background: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 100%;
+}
+
+p {
+    font-family: 'MyAlternativeFont', 'MyWebFont';
+}
+}
+</style>
+
+
 <h1>{{ title }}</h1>
+
+<div class="wrapper">
 {% for q in questions %}
 <hr/>
+<div class="block">
 <h2>{{ q.description }}</h2>
-    <p class="last">Дата публикации вопроса: {{q.date|date:"d-m-Y H:i:s"}}</p>
+    <p>Дата публикации вопроса: {{q.date|date:"d-m-Y H:i:s"}}</p>
 <details>
   <summary>Ответ</summary>
   <p>{{ q.answer }}</p>
 </details>
+        </div>
 	{% endfor %}
+</div>
 {% endblock %}

@@ -1,10 +1,48 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
+<style>
+	.vacancies-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Стили для каждой отдельной вакансии */
+.vacancy {
+    width: 30%; /* Ширина каждой вакансии  */
+    margin-right: 2%; /* Расстояние между вакансиями */
+    float: left; /* Плавающий блок влево */
+}
+
+/* Очистка плавающих блоков для контейнера */
+.vacancies-container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Оформление заголовков ваканций */
+.vacancy h2 {
+    font-size: 18px;
+}
+
+/* Стили для описания ваканций */
+.vacancy p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+</style>
+
+
 <h1>{{ title }}</h1>
-{% for p in positions %}
-<hr/>
-<h2>{{ p.name }}</h2>
-	<p><b>Описание обязанностей: </b>{{ p.description }}</p>
-	{% endfor %}
+<div class="vacancies-container">
+    {% for p in positions %}
+        <div class="vacancy">
+            <h2>{{ p.name }}</h2>
+            <p><b>Описание обязанностей: </b>{{ p.description }}</p>
+        </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

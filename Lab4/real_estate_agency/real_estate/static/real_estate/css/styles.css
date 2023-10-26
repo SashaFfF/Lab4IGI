@@ -1,11 +1,41 @@
+@font-face {
+  font-family: 'MyAlternativeFont'; /* Название шрифта */
+  src: url('../fonts/ofont.ru_Cygre.ttf') format('truetype'); /* Путь к файлу шрифта и его формат */
+  font-weight: normal; /* Нормальный начертание (может быть bold, italic, и др.) */
+  font-style: normal; /* Нормальный стиль (может быть italic) */
+}
+
+@font-face {
+  font-family: 'MyWebFont'; /* Название альтернативного шрифта */
+  src: url('../fonts/ofont.ru_Geologica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'MyFontFamily'; /* Название семейства шрифтов */
+    src: url('../fonts/ofont.ru_Geologica.ttf') format('truetype'),
+         url('../fonts/ofont.ru_Cygre.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 
 html, body {
-	font-family: 'Arial';
+	font-family: 'MyWebFont', 'MyAlternativeFont', Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	height: 100%;
 	width: 100%;
 	color: #444;
+
+	background-image: url('../images/images_for_site.jpg'); /* Путь к изображению фона */
+    background-color: white; /* Цвет фона (если изображение не загружено) */
+    background-repeat: repeat; /* Отключить повторение фона */
+    background-size: cover; /* Заполнить всю доступную площадь */
+    background-position: center center; /* Выравнивание изображения по центру */
 }
 
 header {
@@ -17,6 +47,7 @@ header {
     color: #fff;
     padding: 10px 0;
     z-index: 1000;
+    cursor: pointer;
 }
 
 /* Стиль для nav */
@@ -31,6 +62,7 @@ nav.nav-content {
     color: #fff;
     padding: 20px;
     z-index: 1000;
+    cursor: pointer;
 }
 
 .nav-content ul {
@@ -53,6 +85,16 @@ nav.nav-content {
     font-weight: bold;
 }
 
+/* Медиа-запрос для изменения стилей навигационного меню при ширине экрана менее 760px */
+/* устройство - экран и его ширина меньше 760 */
+@media screen and (max-width: 760px) {
+    nav.nav-content {
+        width: 150px; /* Пример: ширина навигации */
+        background: #ccd8eb;
+        transition: width 0.5s;
+    }
+}
+
 #footer {
     background-color: #b2c2d0;
     color: #b2c2d0;
@@ -65,10 +107,45 @@ nav.nav-content {
 }
 
 h2 {
+  /* 1.Отступы и поля */
+  padding: 10 px;
+  margin: 20px 0 15px 0;
+  /* 2.Заголовки и текст */
+  text-transform: uppercase;
+  /*3.Красная строка*/
+  text-indent: 20px;
+  /*4.Межстрочный интервал*/
+  line-height: 1.5;
+  /*5.Интервал между словами и символами*/
+  word-spacing: 2px;
+  letter-spacing: 0.5px;
+  /**/
+
+  /*7.Шрифты, выравнивание текста, позиционирование блоков*/
   font-size: 26px;
   font-weight: bold;
-  font-family: Yandex Sans Display Light;
+  font-family: 'MyWebFont', 'MyAlternativeFont';
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+    font-variant: small-caps; /* Капитель с маленькими буквами */
+}
+
+p {
+/* 1.Отступы и поля */
+  padding: 10 px;
   margin: 20px 0 15px 0;
+  /*3.Красная строка*/
+  text-indent: 20px;
+  /*4.Межстрочный интервал*/
+  line-height: 1.5;
+  /*5.Интервал между словами и символами*/
+  word-spacing: 2px;
+  letter-spacing: 0.5px;
+  white-space: normal;
+  word-break: break-all;
 }
 
         /*Псевдоклассы*/
@@ -166,8 +243,11 @@ div.article-panel p.last {
 
 ul.list-articles {
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 ul.list-articles li {
 	border-bottom: 1px solid #ccc;
@@ -254,6 +334,7 @@ div.button {
 	padding: 5px 20px 5px 20px;
 	border-radius: 10px;
 	font-size: 20px;
+	cursor: pointer;
 }
 
 .table-content {
@@ -351,7 +432,7 @@ ul.content-table {
 	margin: 0;
 	padding: 60px 0 0 30px;
 	list-style: none;
-	font-family: Sans-serif, Arial, Tahoma;
+	font-family: 'MyWebFont', 'MyAlternativeFont', Sans-serif, Arial, Tahoma;
 	font-size: 28px;
 }
 ul.content-table li {
@@ -457,17 +538,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 	font-style: italic;
 }
 
-#footer {
-	box-sizing: border-box;
 
-	background: #b2c2d0;
-	padding: 5px;
-	color: #000000;
-	font-size: 14px;
-	font-family: Verdana, Geneva, Arial, Helvetica;
-	text-align: left;
-	overflow: hidden;
-}
 
 .form-input {
     width: 300px;
@@ -529,6 +600,17 @@ ul.lang-list li a:hover {color: #fdc073;}
 	box-shadow: none;
 }
 
+#footer {
+	box-sizing: border-box;
+	background: #b2c2d0;
+	height: 40px;
+	padding: 0;
+	color: #000000;
+	font-size: 14px;
+	font-family: Verdana, Geneva, Arial, Helvetica;
+	text-align: left;
+	overflow: hidden;
+}
 
                                                                                     /*MainPage*/
         /* Партнеры */
@@ -602,6 +684,7 @@ ul.lang-list li a:hover {color: #fdc073;}
      padding: 20px;
      position: relative;
      background-color: #fff;
+     border: 1px solid #ddd;
 }
 
 .link-read-post {
@@ -695,4 +778,64 @@ td, th {
 
 tr:hover {
     background-color: #bafa70; /* Цвет фона при наведении курсора */
+}
+
+/* grid */
+	/* Стили для контейнера с недвижимостью */
+.realty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Автоматически создает столбцы шириной 300px или больше */
+    gap: 5px; /* Расстояние между элементами */
+    padding: 10px;
+    background: white;
+}
+
+/* Стили для элементов недвижимости */
+
+
+.article-panel img {
+    max-width: 100%;
+}
+
+.link-read-post {
+    margin-top: 10px;
+}
+
+
+    /* Стили для доступных (активных) элементов формы */
+form input:enabled, form textarea:enabled, form select:enabled {
+    background-color: #e6fade;
+    border: 2px solid green;
+    color: #333;
+    font-family: Arial, sans-serif; /* Пример шрифта для текстовых полей */
+    font-weight: normal;
+}
+
+/* Стили для обязательных элементов формы */
+form input:required, form textarea:required, form select:required {
+    border: 2px solid green;
+    font-family: 'Times New Roman', serif; /* Пример шрифта для обязательных полей */
+    font-weight: bold;
+}
+
+/* Стили для заблокированных элементов формы */
+form input:disabled, form textarea:disabled, form select:disabled {
+    background-color: #eee;
+    color: #999;
+    font-family: 'Courier New', monospace; /* Пример моноширинного шрифта для заблокированных полей */
+    font-weight: normal;
+}
+
+/* Стили для элементов формы с неверными значениями (например, за пределами диапазона) */
+form input:invalid, form textarea:invalid, form select:invalid {
+    border: 2px solid #f00;
+    font-family: Verdana, sans-serif; /* Пример другого шрифта для элементов с неверными значениями */
+    font-weight: normal;
+}
+
+/* Стили для включенных флажков и переключателей */
+form input[type="checkbox"]:checked, form input[type="radio"]:checked {
+    background-color: #0f0;
+    font-family: 'Arial Black', sans-serif; /* Пример шрифта для флажков и переключателей */
+    font-weight: normal;
 }

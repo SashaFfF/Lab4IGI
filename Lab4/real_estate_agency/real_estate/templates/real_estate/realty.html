@@ -1,13 +1,15 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
-<h1>{{realty.title}}</h1>
+
+
+<h2>{{realty.title}}</h2>
 
 <!--{% if post.photo %}-->
 <!--<p><img class="img-article-left" src="{{post.photo.url}}"></p>-->
 <!--{% endif %}-->
 {% if realty.photo %}
-<p><img src="{{realty.photo.url}}"></p>
+<p><img style="float: left; padding 20px; margin: 20px;"  src="{{realty.photo.url}}"></p>
 {% endif %}
 {{realty.description|linebreaks}}
 <p><b>Тип недвижимоти: </b>{{realty.type}} </p>

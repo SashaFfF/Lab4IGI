@@ -448,5 +448,3 @@ def real_estate_chart(request):
 
     return render(request, 'real_estate/chart.html', {'chart_path': chart_path, 'menu': menu})
 
-
-

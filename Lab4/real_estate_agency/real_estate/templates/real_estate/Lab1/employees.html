@@ -1,15 +1,55 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
-<h1 align="middle">Наши сотрудники</h1>
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+.flex-container > div {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 330px; /* Треть ширины контейнера минус внутренние отступы */
+    background-color: white;
+}
+
+.employee-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid grey;
+    margin-right: 20px;
+}
+
+.employee-info {
+    flex: 1;
+}
+
+p {
+    font-family: 'MyAlternativeFont', 'MyWebFont';
+    font-size: 16px;
+}
+</style>
+
+<h2>Наши сотрудники</h2>
+<div class="flex-container">
 {% for e in employees %}
-<hr/>
+	<div class="employee">
 {% if e.photo %}
-<p><img class="img-article-left thumb" src="{{e.photo.url}}"></p>
+<p><img class="employee-photo" src="{{e.photo.url}}"></p>
+{% endif %}
 <h2>{{e}}</h2>
+		<div class="employee-info">
 	<p><b>Должность: </b>{{ e.position }}</p>
     <p><b>Номер телефона: </b>{{ e.phone_number }}</p>
-	<p><b>Адрес электронной почты: </b>{{ e.email }}</p>
-{% endif %}
+	<p><b>Адрес электронной почты: </b><p>{{ e.email }}</p></p>
+		</div>
+		</div>
 	{% endfor %}
+	</div>
 {% endblock %}

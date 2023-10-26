@@ -1,6 +1,22 @@
 {% extends 'real_estate/base.html' %}
 
 {% block content %}
+<style>
+    button {
+    background-color: #65db5c; /* Цвет фона */
+    color: #fff; /* Цвет текста */
+    border: none; /* Убрать границу */
+    border-radius: 4px; /* Скругленные углы */
+    padding: 10px 20px; /* Внутренние отступы */
+    cursor: pointer; /* Смена курсора при наведении */
+    font-size: 16px; /* Размер текста */
+}
+
+button:hover {
+    background-color: #51ad4b; /* Изменение цвета фона при наведении */
+}
+</style>
+
 <h1>{{title}}</h1>
 
 <form action="{% url 'add_page' %}" method="post">
